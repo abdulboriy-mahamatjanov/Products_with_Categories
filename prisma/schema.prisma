@@ -45,15 +45,13 @@ model Users {
   avatar    String
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
-  Sessions  Sessions[]
 }
 
 model Sessions {
   id         String   @id @default(uuid())
   userId     String
-  user       Users    @relation(fields: [userId], references: [id])
   ipAdress   String
-  deviceInfo String
+  deviceInfo Json
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
