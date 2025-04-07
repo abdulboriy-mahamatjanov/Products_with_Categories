@@ -6,7 +6,6 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { UserRole } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 import { CreateAuthDto } from './dto/create-user.dto';
 import { RegisterDto } from './dto/register-user.dto';
@@ -16,6 +15,7 @@ import { LoginDto } from './dto/login-user.dto';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 import * as DeviceDetector from 'device-detector-js';
+import { UserRole } from '@prisma/client';
 
 @Injectable()
 export class AuthService {
@@ -249,7 +249,7 @@ export class AuthService {
       });
 
       if (!checkSession) throw new UnauthorizedException();
-      
+
       return { user };
     } catch (error) {
       throw new BadRequestException(error.message);
